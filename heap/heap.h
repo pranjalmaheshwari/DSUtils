@@ -44,6 +44,7 @@ public:
 	//update element operation
 	//takes the position where to update
 	//and the element with which to update
+	void update(size_t index, bool decreased);
 	void update(size_t index, T with);
 };
 
@@ -149,6 +150,19 @@ void heap< T, Compare>::pop()
 	container[0] = container[container.size()-1];
 	container.pop_back();
 	shift_down(0);
+}
+
+template< typename T, typename Compare>
+void heap< T, Compare>::update(size_t index, bool decreased)
+{
+	if(decreased)
+	{
+		shift_up(index);
+	}
+	else
+	{
+		shift_down(index);
+	}
 }
 
 template< typename T, typename Compare>
